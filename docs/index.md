@@ -112,5 +112,7 @@ Gemini + Canva MCP:
 
 ## Licence & Contributing
 
-This documentation is released under the [MIT Licence](https://opensource.org/licenses/MIT).  
-Spotted an error? Open a pull request or [file an issue](https://github.com/your-username/mcp_config/issues).
+This documentation is released under the [Rin Sanom Licence](https://github.com/RinSanom).  
+Spotted an error? Open a pull request or 
+    [MCP](https://modelcontextprotocol.io/docs/getting-started/intro).
+    [canva.dev](https://www.canva.dev/docs/apps/mcp-server/)
