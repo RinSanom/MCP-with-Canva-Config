@@ -1,0 +1,54 @@
+title: "Canva MCP Integration Guide"
+description: "A complete guide to integrating Canva with AI models via the Model Context Protocol (MCP)"
+baseurl: ""
+url: "https://your-username.github.io"
+repository: "your-username/mcp_config"
+
+# Theme — works out-of-the-box on GitHub Pages (no gem install needed)
+remote_theme: just-the-docs/just-the-docs   # or remove for default Minima
+
+# Minima fallback (uncomment if not using just-the-docs)
+# theme: minima
+
+# Site navigation (just-the-docs nav order is driven by front-matter)
+nav_enabled: true
+
+# Plugins enabled on GitHub Pages
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Markdown processor
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Collections for docs
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:name/
+
+# Build settings
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+
+# SEO / Social
+author: "Your Name"
+twitter:
+  username: yourhandle
+logo: "/docs/assets/logo.png"
+
+# just-the-docs specific
+color_scheme: light
+search_enabled: true
+heading_anchors: true
+back_to_top: true
+back_to_top_text: "Back to top"
+
+footer_content: "Copyright &copy; 2026 Your Organisation. Distributed under an MIT licence."
