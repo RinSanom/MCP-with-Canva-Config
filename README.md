@@ -9,13 +9,13 @@
 
 ## What's Inside
 
-| File | Purpose |
-|---|---|
-| [`docs/index.md`](docs/index.md) | Introduction — what MCP is and how the Canva integration works |
-| [`docs/setup.md`](docs/setup.md) | Installation guide — Gemini CLI, extension install, OAuth flow |
-| [`docs/tools.md`](docs/tools.md) | Full reference for all 21 MCP tools with examples |
-| [`docs/best-practices.md`](docs/best-practices.md) | Candidate IDs vs Final Designs, prompt patterns, security |
-| [`_config.yml`](_config.yml) | Jekyll/GitHub Pages site configuration |
+| File                                               | Purpose                                                        |
+| -------------------------------------------------- | -------------------------------------------------------------- |
+| [`docs/index.md`](docs/index.md)                   | Introduction — what MCP is and how the Canva integration works |
+| [`docs/setup.md`](docs/setup.md)                   | Installation guide — Gemini CLI, extension install, OAuth flow |
+| [`docs/tools.md`](docs/tools.md)                   | Full reference for all 21 MCP tools with examples              |
+| [`docs/best-practices.md`](docs/best-practices.md) | Candidate IDs vs Final Designs, prompt patterns, security      |
+| [`_config.yml`](_config.yml)                       | Jekyll/GitHub Pages site configuration                         |
 
 ---
 

@@ -7,16 +7,18 @@ permalink: /best-practices/
 ---
 
 # Best Practices
+
 {: .no_toc }
 
 Patterns and guardrails for getting the most out of the Canva MCP integration.
 {: .fs-5 .fw-300 }
 
 ## Table of Contents
+
 {: .no_toc .text-delta }
 
 1. TOC
-{:toc}
+   {:toc}
 
 ---
 
@@ -43,15 +45,15 @@ commit-candidate(candidateId: "a3f9c1", title: "My Design")
 
 ### Why This Matters
 
-| Characteristic | Candidate ID | Final Design ID |
-|---|---|---|
-| **Format** | Short alphanumeric e.g. `a3f9c1` | Longer e.g. `DESa3f9c1abc` |
-| **Lifespan** | ~1 hour (server-side TTL) | Permanent until deleted |
-| **Editable?** | ❌ No — read-only preview | ✅ Yes — fully editable |
-| **Exportable?** | ❌ No | ✅ Yes |
-| **Shareable?** | ❌ No | ✅ Yes |
-| **Counts against library?** | ❌ No | ✅ Yes |
-| **Created by** | `generate-design` | `commit-candidate`, `create-design`, `create-from-template` |
+| Characteristic              | Candidate ID                     | Final Design ID                                             |
+| --------------------------- | -------------------------------- | ----------------------------------------------------------- |
+| **Format**                  | Short alphanumeric e.g. `a3f9c1` | Longer e.g. `DESa3f9c1abc`                                  |
+| **Lifespan**                | ~1 hour (server-side TTL)        | Permanent until deleted                                     |
+| **Editable?**               | ❌ No — read-only preview        | ✅ Yes — fully editable                                     |
+| **Exportable?**             | ❌ No                            | ✅ Yes                                                      |
+| **Shareable?**              | ❌ No                            | ✅ Yes                                                      |
+| **Counts against library?** | ❌ No                            | ✅ Yes                                                      |
+| **Created by**              | `generate-design`                | `commit-candidate`, `create-design`, `create-from-template` |
 
 ### The Golden Rule
 
@@ -127,11 +129,13 @@ Work from the **end of the deck backwards** when deleting pages to avoid index s
 ```
 
 **Example — weak prompt:**
+
 ```
 Make a presentation for Endora.
 ```
 
 **Example — strong prompt:**
+
 ```
 Create a 10-slide investor pitch deck for Endora, a Gen Z wellness app.
 Visual style: dark purple (#3B0764) and electric violet (#7C3AED), clean sans-serif fonts,
@@ -141,13 +145,13 @@ market size ($420B), product demo, business model, traction, team, roadmap, fina
 
 ### Useful Prompt Modifiers
 
-| Modifier | Effect |
-|---|---|
-| `"Use our brand kit"` | Triggers `brandKit: true` automatically |
-| `"Give me 4 options"` | Sets `count: 4` |
-| `"16:9 format"` / `"square"` | Sets appropriate `aspectRatio` |
-| `"Based on the [template name] template"` | Routes to `create-from-template` |
-| `"Minimal"` / `"Bold"` / `"Corporate"` | Influences visual tone |
+| Modifier                                  | Effect                                  |
+| ----------------------------------------- | --------------------------------------- |
+| `"Use our brand kit"`                     | Triggers `brandKit: true` automatically |
+| `"Give me 4 options"`                     | Sets `count: 4`                         |
+| `"16:9 format"` / `"square"`              | Sets appropriate `aspectRatio`          |
+| `"Based on the [template name] template"` | Routes to `create-from-template`        |
+| `"Minimal"` / `"Bold"` / `"Corporate"`    | Influences visual tone                  |
 
 ### Iterating on Designs
 
@@ -160,7 +164,7 @@ Instead of editing a committed design when the output is far from what you want,
 
 # Second pass — 4 candidates, refined prompt
 → generate-design(
-    prompt = "Dark, moody wellness pitch deck. Deep purple dominant colour, 
+    prompt = "Dark, moody wellness pitch deck. Deep purple dominant colour,
               electric violet accents. NO white backgrounds.",
     count  = 4
   )
@@ -188,14 +192,14 @@ You: What brand kits do I have in Canva?
 
 ## Rate Limits & Quotas
 
-| Limit | Value | Notes |
-|---|---|---|
-| **Requests per minute** | 60 | Applies to all tools combined |
-| **`generate-design` per hour** | 20 | AI generation is resource-intensive |
-| **Candidates per `generate-design` call** | 4 max | Set with `count` parameter |
-| **Asset upload size** | 100 MB | Per file |
-| **Export downloads** | 100/day | Download URL expires in 24 hours |
-| **Concurrent sessions** | 1 | Only one active OAuth session per account |
+| Limit                                     | Value   | Notes                                     |
+| ----------------------------------------- | ------- | ----------------------------------------- |
+| **Requests per minute**                   | 60      | Applies to all tools combined             |
+| **`generate-design` per hour**            | 20      | AI generation is resource-intensive       |
+| **Candidates per `generate-design` call** | 4 max   | Set with `count` parameter                |
+| **Asset upload size**                     | 100 MB  | Per file                                  |
+| **Export downloads**                      | 100/day | Download URL expires in 24 hours          |
+| **Concurrent sessions**                   | 1       | Only one active OAuth session per account |
 
 When you hit a rate limit, Gemini will surface a `RATE_LIMIT_EXCEEDED` error with a `retryAfter` timestamp. Wait for that period before retrying.
 
@@ -232,14 +236,14 @@ gemini chat --log-level verbose --log-file ~/gemini-canva-audit.log
 
 ## Common Mistakes & How to Avoid Them
 
-| ❌ Mistake | ✅ Fix |
-|---|---|
-| Calling `set-text` on a `candidateId` | Always `commit-candidate` first |
-| Deleting pages from the front of the deck | Delete from the back first, or use `reorder-pages` |
-| Passing an expired candidate to any tool | Re-run `generate-design` with the same prompt |
-| Uploading an asset but forgetting to use it | Call `set-image` after `upload-asset` |
-| Exporting before all edits are done | Sequence: edit → verify → export |
-| Using `delete-design` on the wrong ID | Use `get-design` to confirm ID and title first |
+| ❌ Mistake                                  | ✅ Fix                                             |
+| ------------------------------------------- | -------------------------------------------------- |
+| Calling `set-text` on a `candidateId`       | Always `commit-candidate` first                    |
+| Deleting pages from the front of the deck   | Delete from the back first, or use `reorder-pages` |
+| Passing an expired candidate to any tool    | Re-run `generate-design` with the same prompt      |
+| Uploading an asset but forgetting to use it | Call `set-image` after `upload-asset`              |
+| Exporting before all edits are done         | Sequence: edit → verify → export                   |
+| Using `delete-design` on the wrong ID       | Use `get-design` to confirm ID and title first     |
 
 ---
 

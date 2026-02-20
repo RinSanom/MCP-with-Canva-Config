@@ -7,16 +7,18 @@ permalink: /tools/
 ---
 
 # Tool Reference
+
 {: .no_toc }
 
 All 21 tools available through the Canva MCP integration, organised by category.
 {: .fs-5 .fw-300 }
 
 ## Table of Contents
+
 {: .no_toc .text-delta }
 
 1. TOC
-{:toc}
+   {:toc}
 
 ---
 
@@ -29,7 +31,7 @@ Each tool entry follows this structure:
 - **Returns** — the shape of the structured response
 - **Example** — a real prompt and the resulting MCP call
 
-> **Candidate IDs vs Final Designs:** When a tool creates or searches for designs it often returns *candidate* results — temporary previews with short-lived IDs. You must **commit** a candidate to promote it to a permanent design. See the [Best Practices](best-practices.md) page for a full explanation.
+> **Candidate IDs vs Final Designs:** When a tool creates or searches for designs it often returns _candidate_ results — temporary previews with short-lived IDs. You must **commit** a candidate to promote it to a permanent design. See the [Best Practices](best-practices.md) page for a full explanation.
 
 ---
 
@@ -39,13 +41,13 @@ Each tool entry follows this structure:
 
 **Purpose:** Generate one or more new design candidates from a natural-language description.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `prompt` | string | ✅ | Natural-language description of the design |
-| `designType` | string | ✅ | e.g. `"presentation"`, `"instagram-post"`, `"logo"` |
-| `aspectRatio` | string | | `"16:9"` (default), `"1:1"`, `"9:16"`, `"4:3"` |
-| `count` | integer | | Number of candidates to return (1–4, default 2) |
-| `brandKit` | boolean | | Apply the account's active brand kit (default `false`) |
+| Parameter     | Type    | Required | Description                                            |
+| ------------- | ------- | -------- | ------------------------------------------------------ |
+| `prompt`      | string  | ✅       | Natural-language description of the design             |
+| `designType`  | string  | ✅       | e.g. `"presentation"`, `"instagram-post"`, `"logo"`    |
+| `aspectRatio` | string  |          | `"16:9"` (default), `"1:1"`, `"9:16"`, `"4:3"`         |
+| `count`       | integer |          | Number of candidates to return (1–4, default 2)        |
+| `brandKit`    | boolean |          | Apply the account's active brand kit (default `false`) |
 
 **Returns:** Array of candidate objects — each with a `candidateId`, thumbnail URL, and a short expiry timestamp.
 
@@ -77,12 +79,12 @@ Response:
 
 **Purpose:** Create a blank design canvas of a specified type and size, ready for manual or automated editing.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `designType` | string | ✅ | Template category (see full list in Canva docs) |
-| `title` | string | | Human-readable name stored in your Canva library |
-| `width` | integer | | Width in pixels (overrides `designType` defaults) |
-| `height` | integer | | Height in pixels |
+| Parameter    | Type    | Required | Description                                       |
+| ------------ | ------- | -------- | ------------------------------------------------- |
+| `designType` | string  | ✅       | Template category (see full list in Canva docs)   |
+| `title`      | string  |          | Human-readable name stored in your Canva library  |
+| `width`      | integer |          | Width in pixels (overrides `designType` defaults) |
+| `height`     | integer |          | Height in pixels                                  |
 
 **Returns:** `{ designId, editUrl, thumbnailUrl }`
 
@@ -106,10 +108,10 @@ MCP call:
 
 **Purpose:** Create an exact copy of an existing design — useful for generating variations without touching the original.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `designId` | string | ✅ | ID of the source design |
-| `title` | string | | Name for the new copy |
+| Parameter  | Type   | Required | Description             |
+| ---------- | ------ | -------- | ----------------------- |
+| `designId` | string | ✅       | ID of the source design |
+| `title`    | string |          | Name for the new copy   |
 
 **Returns:** `{ newDesignId, editUrl }`
 
@@ -119,12 +121,12 @@ MCP call:
 
 **Purpose:** Instantiate a design from one of Canva's 1 M+ templates using a template ID or keyword.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `templateId` | string | | Specific template ID from Canva's library |
-| `query` | string | | Keyword search (used if `templateId` is omitted) |
-| `designType` | string | | Filter results by design type |
-| `title` | string | | Name for the new design |
+| Parameter    | Type   | Required | Description                                      |
+| ------------ | ------ | -------- | ------------------------------------------------ |
+| `templateId` | string |          | Specific template ID from Canva's library        |
+| `query`      | string |          | Keyword search (used if `templateId` is omitted) |
+| `designType` | string |          | Filter results by design type                    |
+| `title`      | string |          | Name for the new design                          |
 
 **Returns:** `{ designId, editUrl, templateName }`
 
@@ -149,12 +151,12 @@ MCP call:
 
 **Purpose:** Search your personal Canva library by keyword, design type, or date range.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `query` | string | ✅ | Full-text search query |
-| `designType` | string | | Filter by type (e.g. `"presentation"`) |
-| `limit` | integer | | Max results (1–50, default 10) |
-| `sortBy` | string | | `"relevance"` (default), `"modified"`, `"created"` |
+| Parameter    | Type    | Required | Description                                        |
+| ------------ | ------- | -------- | -------------------------------------------------- |
+| `query`      | string  | ✅       | Full-text search query                             |
+| `designType` | string  |          | Filter by type (e.g. `"presentation"`)             |
+| `limit`      | integer |          | Max results (1–50, default 10)                     |
+| `sortBy`     | string  |          | `"relevance"` (default), `"modified"`, `"created"` |
 
 **Returns:** Array of `{ designId, title, thumbnailUrl, lastModified, designType }`
 
@@ -164,9 +166,9 @@ MCP call:
 
 **Purpose:** Fetch full metadata and a high-resolution thumbnail for a single design by its ID.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `designId` | string | ✅ | The target design's unique identifier |
+| Parameter  | Type   | Required | Description                           |
+| ---------- | ------ | -------- | ------------------------------------- |
+| `designId` | string | ✅       | The target design's unique identifier |
 
 **Returns:** `{ designId, title, thumbnailUrl, editUrl, pages, width, height, createdAt, modifiedAt }`
 
@@ -176,11 +178,11 @@ MCP call:
 
 **Purpose:** Paginate through all designs in your library without a search query.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `limit` | integer | | Items per page (default 20, max 50) |
-| `cursor` | string | | Pagination cursor from a previous response |
-| `designType` | string | | Optional type filter |
+| Parameter    | Type    | Required | Description                                |
+| ------------ | ------- | -------- | ------------------------------------------ |
+| `limit`      | integer |          | Items per page (default 20, max 50)        |
+| `cursor`     | string  |          | Pagination cursor from a previous response |
+| `designType` | string  |          | Optional type filter                       |
 
 **Returns:** `{ designs: [...], nextCursor, totalCount }`
 
@@ -192,10 +194,10 @@ MCP call:
 
 **Purpose:** Replace the text content of one or more text elements within a design.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `designId` | string | ✅ | Target design ID |
-| `replacements` | array | ✅ | Array of `{ elementId, newText }` objects |
+| Parameter      | Type   | Required | Description                               |
+| -------------- | ------ | -------- | ----------------------------------------- |
+| `designId`     | string | ✅       | Target design ID                          |
+| `replacements` | array  | ✅       | Array of `{ elementId, newText }` objects |
 
 **Returns:** `{ updated: number, designId }`
 
@@ -218,12 +220,12 @@ MCP call:
 
 **Purpose:** Swap an image element in a design with a new image (by URL or Canva asset ID).
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `designId` | string | ✅ | Target design ID |
-| `elementId` | string | ✅ | ID of the image element to replace |
-| `imageUrl` | string | | Public URL of the replacement image |
-| `assetId` | string | | Canva asset ID (mutually exclusive with `imageUrl`) |
+| Parameter   | Type   | Required | Description                                         |
+| ----------- | ------ | -------- | --------------------------------------------------- |
+| `designId`  | string | ✅       | Target design ID                                    |
+| `elementId` | string | ✅       | ID of the image element to replace                  |
+| `imageUrl`  | string |          | Public URL of the replacement image                 |
+| `assetId`   | string |          | Canva asset ID (mutually exclusive with `imageUrl`) |
 
 ---
 
@@ -231,11 +233,11 @@ MCP call:
 
 **Purpose:** Apply the account's active brand kit (colours, fonts, logo) to all eligible elements in a design.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `designId` | string | ✅ | Target design ID |
-| `brandKitId` | string | | Specific brand kit (defaults to the account's primary kit) |
-| `scope` | string | | `"all"` (default), `"colors"`, `"fonts"`, `"logos"` |
+| Parameter    | Type   | Required | Description                                                |
+| ------------ | ------ | -------- | ---------------------------------------------------------- |
+| `designId`   | string | ✅       | Target design ID                                           |
+| `brandKitId` | string |          | Specific brand kit (defaults to the account's primary kit) |
+| `scope`      | string |          | `"all"` (default), `"colors"`, `"fonts"`, `"logos"`        |
 
 ---
 
@@ -243,12 +245,12 @@ MCP call:
 
 **Purpose:** Resize an existing design to new dimensions, with optional content rescaling.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `designId` | string | ✅ | Target design ID |
-| `width` | integer | ✅ | New width in pixels |
-| `height` | integer | ✅ | New height in pixels |
-| `scaleContent` | boolean | | Proportionally scale all elements (default `true`) |
+| Parameter      | Type    | Required | Description                                        |
+| -------------- | ------- | -------- | -------------------------------------------------- |
+| `designId`     | string  | ✅       | Target design ID                                   |
+| `width`        | integer | ✅       | New width in pixels                                |
+| `height`       | integer | ✅       | New height in pixels                               |
+| `scaleContent` | boolean |          | Proportionally scale all elements (default `true`) |
 
 ---
 
@@ -256,11 +258,11 @@ MCP call:
 
 **Purpose:** Append a new blank page (slide) to a multi-page design.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `designId` | string | ✅ | Target design ID |
-| `position` | integer | | Insert at position (1-indexed; appends to end if omitted) |
-| `copyFromPage` | integer | | Copy layout from this existing page number |
+| Parameter      | Type    | Required | Description                                               |
+| -------------- | ------- | -------- | --------------------------------------------------------- |
+| `designId`     | string  | ✅       | Target design ID                                          |
+| `position`     | integer |          | Insert at position (1-indexed; appends to end if omitted) |
+| `copyFromPage` | integer |          | Copy layout from this existing page number                |
 
 ---
 
@@ -268,10 +270,10 @@ MCP call:
 
 **Purpose:** Remove a page from a multi-page design.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `designId` | string | ✅ | Target design ID |
-| `pageNumber` | integer | ✅ | 1-indexed page to delete |
+| Parameter    | Type    | Required | Description              |
+| ------------ | ------- | -------- | ------------------------ |
+| `designId`   | string  | ✅       | Target design ID         |
+| `pageNumber` | integer | ✅       | 1-indexed page to delete |
 
 ---
 
@@ -279,10 +281,10 @@ MCP call:
 
 **Purpose:** Change the order of pages within a multi-page design.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `designId` | string | ✅ | Target design ID |
-| `pageOrder` | array | ✅ | New page sequence as an array of 1-indexed page numbers |
+| Parameter   | Type   | Required | Description                                             |
+| ----------- | ------ | -------- | ------------------------------------------------------- |
+| `designId`  | string | ✅       | Target design ID                                        |
+| `pageOrder` | array  | ✅       | New page sequence as an array of 1-indexed page numbers |
 
 ---
 
@@ -292,11 +294,11 @@ MCP call:
 
 **Purpose:** Upload an image, video, or audio file from a URL into your Canva asset library.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `url` | string | ✅ | Publicly accessible URL of the file to upload |
-| `name` | string | | Display name in the Canva library |
-| `tags` | array | | Array of string tags for searchability |
+| Parameter | Type   | Required | Description                                   |
+| --------- | ------ | -------- | --------------------------------------------- |
+| `url`     | string | ✅       | Publicly accessible URL of the file to upload |
+| `name`    | string |          | Display name in the Canva library             |
+| `tags`    | array  |          | Array of string tags for searchability        |
 
 **Returns:** `{ assetId, name, url, mimeType, fileSize }`
 
@@ -306,11 +308,11 @@ MCP call:
 
 **Purpose:** List assets (images, videos, audio) from your Canva library.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `type` | string | | `"image"`, `"video"`, `"audio"` (omit for all) |
-| `query` | string | | Keyword search within asset names/tags |
-| `limit` | integer | | Max results (default 20) |
+| Parameter | Type    | Required | Description                                    |
+| --------- | ------- | -------- | ---------------------------------------------- |
+| `type`    | string  |          | `"image"`, `"video"`, `"audio"` (omit for all) |
+| `query`   | string  |          | Keyword search within asset names/tags         |
+| `limit`   | integer |          | Max results (default 20)                       |
 
 ---
 
@@ -318,9 +320,9 @@ MCP call:
 
 **Purpose:** Permanently delete an asset from your Canva library.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `assetId` | string | ✅ | ID of the asset to delete |
+| Parameter | Type   | Required | Description               |
+| --------- | ------ | -------- | ------------------------- |
+| `assetId` | string | ✅       | ID of the asset to delete |
 
 > ⚠️ **This action is irreversible.** Any designs using this asset will display a placeholder.
 
@@ -332,12 +334,12 @@ MCP call:
 
 **Purpose:** Export a finished design to a downloadable file in the requested format.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `designId` | string | ✅ | Target design ID |
-| `format` | string | ✅ | `"pdf"`, `"png"`, `"jpg"`, `"svg"`, `"mp4"`, `"gif"`, `"pptx"` |
-| `pages` | array | | Page numbers to export (omit for all pages) |
-| `quality` | string | | `"standard"` or `"high"` (default `"high"`) |
+| Parameter  | Type   | Required | Description                                                    |
+| ---------- | ------ | -------- | -------------------------------------------------------------- |
+| `designId` | string | ✅       | Target design ID                                               |
+| `format`   | string | ✅       | `"pdf"`, `"png"`, `"jpg"`, `"svg"`, `"mp4"`, `"gif"`, `"pptx"` |
+| `pages`    | array  |          | Page numbers to export (omit for all pages)                    |
+| `quality`  | string |          | `"standard"` or `"high"` (default `"high"`)                    |
 
 **Returns:** `{ downloadUrl, expiresAt, fileSize, format }`
 
@@ -363,11 +365,11 @@ Response:
 
 **Purpose:** Generate a shareable Canva link for viewing or editing a design.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `designId` | string | ✅ | Target design ID |
-| `access` | string | ✅ | `"view"` or `"edit"` |
-| `expiresIn` | string | | Duration string e.g. `"7d"`, `"24h"` (default: no expiry) |
+| Parameter   | Type   | Required | Description                                               |
+| ----------- | ------ | -------- | --------------------------------------------------------- |
+| `designId`  | string | ✅       | Target design ID                                          |
+| `access`    | string | ✅       | `"view"` or `"edit"`                                      |
+| `expiresIn` | string |          | Duration string e.g. `"7d"`, `"24h"` (default: no expiry) |
 
 **Returns:** `{ shareUrl, access, expiresAt }`
 
@@ -379,10 +381,10 @@ Response:
 
 **Purpose:** Promote a **candidate design** (a temporary preview) into a permanent design saved to your Canva library.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `candidateId` | string | ✅ | The short-lived candidate ID from `generate-design` |
-| `title` | string | | Name for the committed design |
+| Parameter     | Type   | Required | Description                                         |
+| ------------- | ------ | -------- | --------------------------------------------------- |
+| `candidateId` | string | ✅       | The short-lived candidate ID from `generate-design` |
+| `title`       | string |          | Name for the committed design                       |
 
 **Returns:** `{ designId, editUrl, thumbnailUrl }`
 
@@ -409,9 +411,9 @@ Response:
 
 **Purpose:** Permanently delete a design from your Canva library.
 
-| Parameter | Type | Required | Description |
-|---|---|---|---|
-| `designId` | string | ✅ | ID of the design to delete |
+| Parameter  | Type   | Required | Description                |
+| ---------- | ------ | -------- | -------------------------- |
+| `designId` | string | ✅       | ID of the design to delete |
 
 **Returns:** `{ deleted: true, designId }`
 
@@ -421,29 +423,29 @@ Response:
 
 ## Full Tool Summary Table
 
-| # | Tool | Category | Creates Content? | Destructive? |
-|---|---|---|---|---|
-| 1 | `generate-design` | Creation | ✅ | |
-| 2 | `create-design` | Creation | ✅ | |
-| 3 | `duplicate-design` | Creation | ✅ | |
-| 4 | `create-from-template` | Creation | ✅ | |
-| 5 | `search-designs` | Discovery | | |
-| 6 | `get-design` | Discovery | | |
-| 7 | `list-designs` | Discovery | | |
-| 8 | `set-text` | Editing | | |
-| 9 | `set-image` | Editing | | |
-| 10 | `apply-brand` | Editing | | |
-| 11 | `resize-design` | Editing | | |
-| 12 | `add-page` | Editing | | |
-| 13 | `delete-page` | Editing | | ⚠️ |
-| 14 | `reorder-pages` | Editing | | |
-| 15 | `upload-asset` | Assets | ✅ | |
-| 16 | `list-assets` | Assets | | |
-| 17 | `delete-asset` | Assets | | ⚠️ |
-| 18 | `export-design` | Export | | |
-| 19 | `get-share-link` | Sharing | | |
-| 20 | `commit-candidate` | Workflow | ✅ | |
-| 21 | `delete-design` | Workflow | | ⚠️ |
+| #   | Tool                   | Category  | Creates Content? | Destructive? |
+| --- | ---------------------- | --------- | ---------------- | ------------ |
+| 1   | `generate-design`      | Creation  | ✅               |              |
+| 2   | `create-design`        | Creation  | ✅               |              |
+| 3   | `duplicate-design`     | Creation  | ✅               |              |
+| 4   | `create-from-template` | Creation  | ✅               |              |
+| 5   | `search-designs`       | Discovery |                  |              |
+| 6   | `get-design`           | Discovery |                  |              |
+| 7   | `list-designs`         | Discovery |                  |              |
+| 8   | `set-text`             | Editing   |                  |              |
+| 9   | `set-image`            | Editing   |                  |              |
+| 10  | `apply-brand`          | Editing   |                  |              |
+| 11  | `resize-design`        | Editing   |                  |              |
+| 12  | `add-page`             | Editing   |                  |              |
+| 13  | `delete-page`          | Editing   |                  | ⚠️           |
+| 14  | `reorder-pages`        | Editing   |                  |              |
+| 15  | `upload-asset`         | Assets    | ✅               |              |
+| 16  | `list-assets`          | Assets    |                  |              |
+| 17  | `delete-asset`         | Assets    |                  | ⚠️           |
+| 18  | `export-design`        | Export    |                  |              |
+| 19  | `get-share-link`       | Sharing   |                  |              |
+| 20  | `commit-candidate`     | Workflow  | ✅               |              |
+| 21  | `delete-design`        | Workflow  |                  | ⚠️           |
 
 ---
 

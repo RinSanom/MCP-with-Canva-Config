@@ -7,16 +7,18 @@ permalink: /setup/
 ---
 
 # Setup Guide
+
 {: .no_toc }
 
 Follow these steps to connect Gemini to Canva via MCP in under 10 minutes.
 {: .fs-5 .fw-300 }
 
 ## Table of Contents
+
 {: .no_toc .text-delta }
 
 1. TOC
-{:toc}
+   {:toc}
 
 ---
 
@@ -151,14 +153,14 @@ gemini extensions auth canva
 
 ### What Permissions Are Requested?
 
-| OAuth Scope | Purpose |
-|---|---|
-| `design:content:read` | List and search your existing designs |
-| `design:content:write` | Create, duplicate, and edit designs |
-| `design:meta:read` | Read design metadata (name, size, brand kit) |
-| `asset:read` | Access your uploaded images and media |
-| `asset:write` | Upload new assets to your Canva library |
-| `export:read` | Download / export finished designs |
+| OAuth Scope            | Purpose                                      |
+| ---------------------- | -------------------------------------------- |
+| `design:content:read`  | List and search your existing designs        |
+| `design:content:write` | Create, duplicate, and edit designs          |
+| `design:meta:read`     | Read design metadata (name, size, brand kit) |
+| `asset:read`           | Access your uploaded images and media        |
+| `asset:write`          | Upload new assets to your Canva library      |
+| `export:read`          | Download / export finished designs           |
 
 > **Security note:** Tokens are stored locally in `~/.config/gemini/extensions/canva/token.json` and are never sent to Google's servers. Canva tokens expire after **24 hours**; the CLI refreshes them automatically using the stored refresh token.
 
@@ -249,10 +251,10 @@ All Canva extension settings live in `~/.config/gemini/extensions/canva/config.j
 ```jsonc
 {
   "server": "https://mcp.canva.com/v1",
-  "authPort": 9004,            // local OAuth redirect port
-  "timeout": 30000,            // request timeout in ms
-  "maxCandidates": 4,          // designs returned per generate call
-  "defaultExportFormat": "pdf" // "pdf" | "png" | "jpg" | "mp4"
+  "authPort": 9004, // local OAuth redirect port
+  "timeout": 30000, // request timeout in ms
+  "maxCandidates": 4, // designs returned per generate call
+  "defaultExportFormat": "pdf", // "pdf" | "png" | "jpg" | "mp4"
 }
 ```
 

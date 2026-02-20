@@ -7,6 +7,7 @@ permalink: /
 ---
 
 # Canva MCP Integration Guide
+
 {: .fs-9 }
 
 Supercharge your design workflow by letting AI models talk directly to Canva.
@@ -24,25 +25,28 @@ The **Model Context Protocol (MCP)** is an open standard developed to give large
 Think of MCP as a **universal adapter layer** that sits between an AI model and the outside world:
 
 ```
-┌───────────────────┐        MCP         ┌──────────────────────┐
-│   LLM / AI Agent  │ ◄─────────────────► │  External Tool / API  │
-│  (e.g. Gemini)    │   structured calls  │  (e.g. Canva, GitHub) │
-└───────────────────┘                    └──────────────────────┘
+┌───────────────────┐        MCP           ┌──────────────────────┐
+│   LLM / AI Agent  │ ◄─────────────────►  │  External Tool / API │
+│  (e.g. Gemini)    │   structured calls   │  (e.g. Canva, GitHub)│
+└───────────────────┘                      └──────────────────────┘
+
 ```
+
+![Alt text](assets/image.png)
 
 ### Why MCP Matters
 
-| Concern | Without MCP | With MCP |
-|---|---|---|
-| **Security** | API keys embedded in prompts | OAuth-scoped tokens, no key exposure |
-| **Standardisation** | One custom integration per tool | One protocol, many tools |
-| **Discoverability** | Model must guess capabilities | Tools self-describe via manifests |
-| **Auditability** | Opaque tool calls | Structured, loggable requests |
+| Concern             | Without MCP                     | With MCP                             |
+| ------------------- | ------------------------------- | ------------------------------------ |
+| **Security**        | API keys embedded in prompts    | OAuth-scoped tokens, no key exposure |
+| **Standardisation** | One custom integration per tool | One protocol, many tools             |
+| **Discoverability** | Model must guess capabilities   | Tools self-describe via manifests    |
+| **Auditability**    | Opaque tool calls               | Structured, loggable requests        |
 
 MCP follows a **client → server → tool** pattern:
 
-1. The **MCP Client** (e.g. Gemini CLI) discovers what tools are available.  
-2. The **MCP Server** (e.g. Canva's server) validates the request and enforces permissions.  
+1. The **MCP Client** (e.g. Gemini CLI) discovers what tools are available.
+2. The **MCP Server** (e.g. Canva's server) validates the request and enforces permissions.
 3. The **Tool** (e.g. `generate-design`) executes the action and returns structured data.
 
 ---
@@ -71,10 +75,10 @@ Gemini CLI  ──[MCP]──►  Canva MCP Server  ──►  Canva Platform
 
 ## Documentation Map
 
-| Page | Contents |
-|---|---|
-| **[Setup Guide](setup.md)** | Install Gemini CLI · Register the Canva extension · OAuth flow |
-| **[Tool Reference](tools.md)** | All 21 tools with parameters, examples & return values |
+| Page                                    | Contents                                                       |
+| --------------------------------------- | -------------------------------------------------------------- |
+| **[Setup Guide](setup.md)**             | Install Gemini CLI · Register the Canva extension · OAuth flow |
+| **[Tool Reference](tools.md)**          | All 21 tools with parameters, examples & return values         |
 | **[Best Practices](best-practices.md)** | Candidate IDs vs Final Designs · Prompt patterns · Rate limits |
 
 ---
